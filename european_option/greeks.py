@@ -31,6 +31,10 @@ def get_gamma(d1):
     return stat.norm.pdf(d1) / (sigma * S * np.sqrt(T))
 
 
+def get_vega(d1, T, S):
+    return S * np.sqrt(T) * np.exp(-1*d1**2*0.5) / np.sqrt(2*np.pi)
+
+
 def plot_greeks_surface(greek_name, T, S, greek_val, n2, start_t, end_t, start_s, end_s):
     trace = go.Surface(x=T, y=S, z=greek_val, colorscale='Jet', opacity=0.8,
                        contours_x=dict(show=True, color='black', start=start_t, end=end_t, size=(end_t - start_t) / n2,
@@ -89,3 +93,12 @@ if __name__ == '__main__':
 
     plot_greeks_surface('Call Gamma', T, S, call_gamma, n2, start_t, end_t, start_s, end_s)
     plot_greeks_surface('Put Gamma', T, S, put_gamma, n2, start_t, end_t, start_s, end_s)
+
+    # get Vega and plot Vega Surface
+    call_vega = get_vega(d1, T, S)
+    pull_vega = get_vega(d1, T, S)
+
+    plot_greeks_surface('Call Vega', T, S, call_vega, n2, start_t, end_t, start_s, end_s)
+    plot_greeks_surface('Put Vega', T, S, call_vega, n2, start_t, end_t, start_s, end_s)
+
+
