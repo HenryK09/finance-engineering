@@ -1,2 +1,2 @@
 # finance-engineering
-https://blog.naver.com/stochastic73
+Got modelling codes from https://blog.naver.com/stochastic73
